@@ -1,6 +1,6 @@
 import os
 import discord
-from discord import commands
+from discord.ext import commands
 
 BOT = commands.Bot(command_prefix="!")
 TOKEN = os.getenv("DISCORD_TOKEN")

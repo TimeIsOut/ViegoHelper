@@ -5,7 +5,12 @@ from requests import get
 from variables import VAL_KEY
 
 
-VAL_CONTENT = loads(get(f"https://ap.api.riotgames.com/val/content/v1/contents?api_key={VAL_KEY}").content)
+VAL_CONTENT = None
+while VAL_CONTENT is None:
+    content = get(f"https://ap.api.riotgames.com/val/content/v1/contents?api_key={VAL_KEY}")
+    if content.status_code == 200:
+        VAL_CONTENT = content.content
+    
 
 
 class AgentCog(commands.Cog):

@@ -5,7 +5,7 @@ from requests import get
 from variables import VAL_KEY
 
 
-VAL_CONTENT = loads(get(f"https://ap.api.riotgames.com/val/content/v1/contents?api_key={VAL_KEY}"))
+VAL_CONTENT = loads(get(f"https://ap.api.riotgames.com/val/content/v1/contents?api_key={VAL_KEY}").content)
 
 
 class AgentCog(commands.Cog):

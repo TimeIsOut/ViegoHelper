@@ -3,14 +3,16 @@ from random import choice
 from json import loads
 from requests import get
 from variables import VAL_KEY
+from time import sleep
 
 
 VAL_CONTENT = None
 while VAL_CONTENT is None:
     content = get(f"https://ap.api.riotgames.com/val/content/v1/contents?api_key={VAL_KEY}")
     if content.status_code == 200:
-        VAL_CONTENT = content.content
-    
+        VAL_CONTENT = loads(content.content)
+    else:
+        sleep(5)
 
 
 class AgentCog(commands.Cog):

@@ -1,9 +1,7 @@
-import os
-import discord
 from discord.ext import commands
+from variables import TOKEN
 
 BOT = commands.Bot(command_prefix="!")
-TOKEN = os.getenv("DISCORD_TOKEN")
 
 @BOT.event
 async def on_ready():
@@ -15,4 +13,5 @@ async def ping(ctx):
 
 
 if __name__ == "__main__":
+    BOT.load_extension("cogs.agent")
     BOT.run(TOKEN)

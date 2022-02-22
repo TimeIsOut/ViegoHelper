@@ -24,7 +24,7 @@ async def menu(ctx):
     embed.set_thumbnail(url=f"{DATA_PATH}/viego_avatar.jpg")
     await ctx.send(embed=embed, components=[[Button(label="Choose a random agent", style=ButtonStyle.gray, custom_id="random_agents"),
                                              Button(label="All VALORANT agents", style=ButtonStyle.gray, custom_id="all_agents")]])
-    interaction = BOT.wait_for("button_click", check=lambda x: x in ["random_agents", "all_agents"])
+    interaction = await BOT.wait_for("button_click", check=lambda x: x in ["random_agents", "all_agents"])
     await ctx.invoke(BOT.get_command(interaction.component.custom_id))
 
 if __name__ == "__main__":

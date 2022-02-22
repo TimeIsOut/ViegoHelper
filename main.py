@@ -1,12 +1,13 @@
 from discord.ext import commands
 from discord import Embed
-from discord_components import Button, ButtonStyle
+from discord_components import Button, ButtonStyle, DiscordComponents
 from variables import TOKEN, DATA_PATH
 
 BOT = commands.Bot(command_prefix="!")
 
 @BOT.event
 async def on_ready():
+    DiscordComponents(BOT)
     print(f"Logged in as {BOT.user.name}({BOT.user.id})")
 
 @BOT.event

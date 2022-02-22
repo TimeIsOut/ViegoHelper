@@ -11,7 +11,7 @@ async def on_ready():
 
 @BOT.event
 async def on_button_click(interaction):
-    await interaction.respond(BOT.invoke(interaction.component.custom_id))
+    await BOT.invoke(BOT.get_command(interaction.component.custom_id))
     
 
 @BOT.command()

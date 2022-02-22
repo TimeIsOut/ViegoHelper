@@ -1,6 +1,6 @@
 from discord.ext import commands
 from random import choice
-from ViegoHelper.variables import VAL_CONTENT
+from variables import VAL_CONTENT
 
 
 class AgentCog(commands.Cog):

@@ -1,3 +1,4 @@
 discord.py
 requests
 discord_components
+discord.py[voice]

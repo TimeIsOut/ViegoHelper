@@ -18,10 +18,6 @@ async def ping(ctx):
     await ctx.send("pong")
 
 @BOT.command()
-async def exit(ctx):
-    await ctx.send("Thanks for using Viego Helper!")
-
-@BOT.command()
 async def menu(ctx):
     embed = Embed()
     embed.title = "Welcome to Viego Helper!"
@@ -32,9 +28,9 @@ async def menu(ctx):
                                              [Button(label="Exit the bot", style=ButtonStyle.red, custom_id="exit")]])
     interaction = await BOT.wait_for("button_click")
     while interaction.component.custom_id != "exit":
-        await ctx.invoke(BOT.get_command(interaction.component.custom_id))
+        await gather(ctx.invoke(BOT.get_command(interaction.component.custom_id)), interaction.respond())
         interaction = await BOT.wait_for("button_click")
-    await ctx.invoke(BOT.get_command(interaction.component.custom_id))
+    await interaction.respond(content="Thanks for using Viego Helper!")
 
 if __name__ == "__main__":
     BOT.load_extension("cogs.agent")

@@ -1,3 +1,5 @@
+from asyncio import gather
+from code import interact
 from discord.ext import commands
 from discord import Embed
 from discord_components import Button, ButtonStyle, DiscordComponents
@@ -16,15 +18,22 @@ async def ping(ctx):
     await ctx.send("pong")
 
 @BOT.command()
+async def exit(ctx):
+    await ctx.send("Thanks for using Viego Helper!")
+
+@BOT.command()
 async def menu(ctx):
     embed = Embed()
     embed.title = "Welcome to Viego Helper!"
     embed.description = "Choose one of the commands to go!"
     embed.set_thumbnail(url=f"{DATA_PATH}/viego_avatar.jpg")
     await ctx.send(embed=embed, components=[[Button(label="Choose a random agent", style=ButtonStyle.gray, custom_id="random_agents"),
-                                             Button(label="All VALORANT agents", style=ButtonStyle.gray, custom_id="all_agents")]])
-    interaction = await BOT.wait_for("button_click", check=lambda x: x.custom_id in ["random_agents", "all_agents"])
-    await ctx.invoke(BOT.get_command(interaction.component.custom_id))
+                                             Button(label="All VALORANT agents", style=ButtonStyle.gray, custom_id="all_agents")],
+                                             [Button(label="Exit the bot", style=ButtonStyle.red, custom_id="exit")]])
+    interaction = await BOT.wait_for("button_click")
+    while interaction.component.custom.id != "exit":
+        await ctx.invoke(BOT.get_command(interaction.component.custom_id))
+        interaction = await BOT.wait_for("button_click")
 
 if __name__ == "__main__":
     BOT.load_extension("cogs.agent")

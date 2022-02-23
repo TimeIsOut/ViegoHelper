@@ -31,7 +31,7 @@ async def menu(ctx):
                                              Button(label="All VALORANT agents", style=ButtonStyle.gray, custom_id="all_agents")],
                                              [Button(label="Exit the bot", style=ButtonStyle.red, custom_id="exit")]])
     interaction = await BOT.wait_for("button_click")
-    while interaction.component.custom.id != "exit":
+    while interaction.component.custom_id != "exit":
         await ctx.invoke(BOT.get_command(interaction.component.custom_id))
         interaction = await BOT.wait_for("button_click")
 

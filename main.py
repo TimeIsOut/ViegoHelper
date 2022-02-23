@@ -34,6 +34,7 @@ async def menu(ctx):
     while interaction.component.custom_id != "exit":
         await ctx.invoke(BOT.get_command(interaction.component.custom_id))
         interaction = await BOT.wait_for("button_click")
+    await ctx.invoke(BOT.get_command(interaction.component.custom_id))
 
 if __name__ == "__main__":
     BOT.load_extension("cogs.agent")

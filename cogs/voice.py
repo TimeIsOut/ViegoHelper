@@ -12,7 +12,6 @@ class VoiceCog(commands.Cog):
     async def connect(self, ctx):  
         if (n := ctx.author.voice):
             await self.bot.connect(n.channel)
-            self.voice_channel
         else:
             await ctx.send("You are not connected to any of the voice channels. You need to connect to one of them.")
     

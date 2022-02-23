@@ -40,4 +40,5 @@ async def menu(ctx):
 
 if __name__ == "__main__":
     BOT.load_extension("cogs.agent")  # Подключение держателей команд (каждый прописывается отдельно)
+    BOT.load_extension("cogs.voice")
     BOT.run(TOKEN)  # Запуск бота

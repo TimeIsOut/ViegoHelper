@@ -1,5 +1,3 @@
-from asyncio import gather
-from code import interact
 from discord.ext import commands
 from discord import Embed
 from discord_components import Button, ButtonStyle, DiscordComponents
@@ -28,7 +26,7 @@ async def menu(ctx):
                                              [Button(label="Exit the bot", style=ButtonStyle.red, custom_id="exit")]])
     interaction = await BOT.wait_for("button_click")
     while interaction.component.custom_id != "exit":
-        await gather(ctx.invoke(BOT.get_command(interaction.component.custom_id)), interaction.respond())
+        await interaction.respond(ctx.invoke(BOT.get_command(interaction.component.custom_id)))
         interaction = await BOT.wait_for("button_click")
     await interaction.respond(content="Thanks for using Viego Helper!")
 

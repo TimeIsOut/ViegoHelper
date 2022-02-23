@@ -11,11 +11,11 @@ class AgentCog(commands.Cog):
     @commands.command()
     async def all_agents(self, ctx):
         output_agents = '\n'.join(self.agents)
-        await ctx.send(f"List of VALORANT agents:\n{output_agents}")
+        return f"List of VALORANT agents:\n{output_agents}"
     
     @commands.command()
     async def random_agents(self, ctx):
-        await ctx.send(f"I chose you an agent. You need {choice(self.agents)}!")
+        return f"I chose you an agent. You need {choice(self.agents)}!"
 
 
 def setup(bot):

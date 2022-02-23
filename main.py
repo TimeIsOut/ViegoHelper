@@ -27,7 +27,7 @@ async def menu(ctx):
     interaction = await BOT.wait_for("button_click")
     while interaction.component.custom_id != "exit":
         content = await ctx.invoke(BOT.get_command(interaction.component.custom_id))
-        await interaction.respond(content=content)
+        await interaction.respond(content=content, ephemeral=False)
         interaction = await BOT.wait_for("button_click")
     await interaction.respond(content="Thanks for using Viego Helper!")
 

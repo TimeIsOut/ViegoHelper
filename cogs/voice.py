@@ -8,7 +8,7 @@ class VoiceCog(commands.Cog):
         self.bot = bot
     
     '''Подключение к голосовому чату'''
-    @commands.command(pass_context=True)
+    @commands.command()
     async def connect(self, ctx):  
         if (n := ctx.author.voice):
             await self.bot.connect(n.channel)
@@ -16,7 +16,7 @@ class VoiceCog(commands.Cog):
             await ctx.send("You are not connected to any of the voice channels. You need to connect to one of them.")
     
     '''Отключение от голосового чата'''
-    @commands.command(pass_context=True)
+    @commands.command()
     async def disconnect(self, ctx):  
         if ctx.voice_client:
             await ctx.guild.voice_client.disconnect()
